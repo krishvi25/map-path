@@ -349,19 +349,26 @@ function calculateRouteSeverity(routeCoords) {
         
         <>
   <input
-    type="text"
-    placeholder="🔍 Search destination..."
-    value={searchText}
-    onChange={(e) => {
-      const value = e.target.value;
-      setSearchText(value);
+  type="text"
+  placeholder="🔍 Search destination..."
+  value={searchText}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearchText(value);
 
+    if (value.length > 2) {   // 👈 prevent empty spam
       clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
         searchPlace(value);
-      }, 300);
-    }}
-  />
+      }, 400);
+    }
+  }}
+  style={{
+    width: "100%",
+    padding: "10px",
+    fontSize: "16px",   // 👈 VERY IMPORTANT for mobile
+  }}
+/>
 
     {suggestions.length > 0 && (
       <div
