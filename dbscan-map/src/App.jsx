@@ -87,7 +87,7 @@ async function searchPlace(query) {
     setSearchLoading(true);
 
     const res = await fetch(
-      `http://localhost:5000/search?q=${encodeURIComponent(query)}`
+      `https://map-path.onrender.com/search?q=${encodeURIComponent(query)}`
     );
 
     const data = await res.json();
